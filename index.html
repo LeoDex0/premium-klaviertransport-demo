@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Klaviertransport in sicheren Händen | Premium Klavier- &amp; Spezialtransport</title>
+  <meta name="description" content="Klaviertransport, Flügeltransport, Tresor- und Spezialtransporte: professionell, sicher und doppelt versichert. In NRW, Rheinland-Pfalz, Hessen und bundesweit.">
+  <!-- Design-Vorschau: nicht indexieren, solange die Seite nicht live ist -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#121214">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
+  <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/hero-800.webp" imagesrcset="assets/img/hero-800.webp 800w, assets/img/hero-1200.webp 1200w" imagesizes="(min-width: 1024px) 480px, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <script>
+    (function (c) {
+      c.add('js');
+      // Intro nur beim ersten Aufruf pro Sitzung (mit ?intro in der Adresse immer)
+      var seen = false;
+      try { seen = !!sessionStorage.getItem('pk-intro') && !/[?&]intro/.test(location.search); sessionStorage.setItem('pk-intro', '1'); } catch (e) {}
+      if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) c.add('no-intro');
+      // Fallback: Inhalte zeigen, falls main.js nicht lädt
+      setTimeout(function () { if (!window.__mainLoaded) c.add('reveal-all'); }, 3500);
+    })(document.documentElement.classList);
+  </script>
+</head>
+<body>
+  <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- Intro: Klaviatur spielt eine Tonleiter, dann hebt sich der Vorhang -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__inner">
+      <div class="intro__keys"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><b style="--k:0"></b><b style="--k:1"></b><b style="--k:3"></b><b style="--k:4"></b><b style="--k:5"></b><b style="--k:7"></b><b style="--k:8"></b></div>
+      <div class="intro__bar"><i></i></div>
+      <img class="intro__logo" src="assets/img/logo.webp" width="756" height="207" alt="">
+    </div>
+  </div>
+
+  <!-- Icons: Lucide (ISC-Lizenz), als Sprite eingebunden -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-grand" viewBox="0 0 24 24"><path d="M10 13v4"/><path d="M14 13v4"/><path d="M18 13v4"/><path d="M2 13h20"/><path d="M22 11.5A3.5 3.5 0 0018.5 8a3.52 3.52 0 01-3.173-2A7 7 0 002 9v10a2 2 0 002 2h16a2 2 0 002-2z"/><path d="M6 13v4"/></symbol>
+    <symbol id="i-upright" viewBox="0 0 24 24"><path d="M5 3h14a1 1 0 0 1 1 1v8H4V4a1 1 0 0 1 1-1z"/><path d="M3 12h18v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M7.5 12v2"/><path d="M10.5 12v2"/><path d="M13.5 12v2"/><path d="M16.5 12v2"/><path d="M6 16v5"/><path d="M18 16v5"/><path d="M9 7h6"/></symbol>
+    <symbol id="i-vault" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m7.9 7.9 2.7 2.7"/><path d="m13.4 10.6 2.7-2.7"/><path d="m7.9 16.1 2.7-2.7"/><path d="m13.4 13.4 2.7 2.7"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-forklift" viewBox="0 0 24 24"><path d="M12 12H5a2 2 0 0 0-2 2v5"/><path d="M15 19h7"/><path d="M16 19V2"/><path d="M6 12V7a2 2 0 0 1 2-2h2.172a2 2 0 0 1 1.414.586l3.828 3.828A2 2 0 0 1 16 10.828"/><path d="M7 19h4"/><circle cx="13" cy="19" r="2"/><circle cx="5" cy="19" r="2"/></symbol>
+    <symbol id="i-brush" viewBox="0 0 24 24"><path d="m14.622 17.897-10.68-2.913"/><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"/><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"/></symbol>
+    <symbol id="i-recycle" viewBox="0 0 24 24"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 10.598"/><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"/><path d="m13.378 9.633 4.096 1.098 1.097-4.096"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="m9 15 2 2 4-4"/></symbol>
+  </svg>
+
+  <div class="topbar">
+    <div class="container topbar__row">
+      <ul class="topbar__list">
+        <li><svg class="icon"><use href="#i-clock"/></svg>Mo–Fr 9–18 Uhr · Sa 10–13 Uhr</li>
+        <li><svg class="icon"><use href="#i-pin"/></svg>NRW · Rheinland-Pfalz · Hessen · bundesweit</li>
+      </ul>
+      <a class="topbar__mail" href="mailto:info@premium-klaviertransport.de"><svg class="icon"><use href="#i-mail"/></svg>info@premium-klaviertransport.de</a>
+    </div>
+  </div>
+
+  <header class="header" id="top">
+    <div class="container header__row">
+      <a class="logo" href="#top" aria-label="Premium Speziallogistik – zur Startseite">
+        <img src="assets/img/logo.webp" width="756" height="207" alt="Premium Speziallogistik">
+      </a>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#vorteile">Vorteile</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#einblicke">Einblicke</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="header__phone" href="tel:+4920145863256"><svg class="icon"><use href="#i-phone"/></svg>0201 45 86 32 56</a>
+        <a class="btn btn--primary btn--sm header__cta" href="#anfrage">Angebot anfordern</a>
+        <a class="iconbtn iconbtn--red header__call" href="tel:+4920145863256" aria-label="Jetzt anrufen: 0201 45 86 32 56"><svg class="icon"><use href="#i-phone"/></svg></a>
+        <button class="iconbtn burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü öffnen"><span></span><span></span></button>
+      </div>
+    </div>
+    <span class="progress" aria-hidden="true"></span>
+  </header>
+
+  <div class="menu" id="menu" inert>
+    <nav class="menu__nav" aria-label="Mobile Navigation">
+      <a href="#leistungen"><span>01</span>Leistungen</a>
+      <a href="#vorteile"><span>02</span>Vorteile</a>
+      <a href="#ablauf"><span>03</span>Ablauf</a>
+      <a href="#einblicke"><span>04</span>Einblicke</a>
+      <a href="#faq"><span>05</span>Häufige Fragen</a>
+      <a href="#anfrage"><span>06</span>Kontakt</a>
+    </nav>
+    <div class="menu__foot">
+      <a class="btn btn--primary btn--block" href="#anfrage">Angebot anfordern</a>
+      <a class="btn btn--ghost btn--block" href="tel:+4920145863256"><svg class="icon"><use href="#i-phone"/></svg>0201 45 86 32 56</a>
+      <p class="menu__hours"><svg class="icon"><use href="#i-clock"/></svg>Mo–Fr 9–18 Uhr · Sa 10–13 Uhr</p>
+    </div>
+  </div>
+
+  <main id="inhalt">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow eyebrow--light">Klavier- &amp; Spezialtransporte</p>
+          <h1><span class="line"><span class="line__in">Klaviertransport in</span></span> <span class="line"><em class="line__in">sicheren Händen.</em></span></h1>
+          <p class="hero__lead">Klaviere, Flügel, Tresore und schwere Spezialgüter – seit über 15&nbsp;Jahren professionell, sicher und zuverlässig transportiert.</p>
+          <div class="hero__cta" id="hero-cta">
+            <a class="btn btn--primary btn--shine" href="#anfrage">Angebot anfordern<svg class="icon"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost" href="tel:+4920145863256"><svg class="icon"><use href="#i-phone"/></svg>0201 45 86 32 56</a>
+          </div>
+          <ul class="hero__checks">
+            <li><svg class="icon"><use href="#i-check"/></svg>Doppelt versichert</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Über 15 Jahre Erfahrung</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Bundesweit im Einsatz</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero__media">
+            <img src="assets/img/hero-800.webp" srcset="assets/img/hero-800.webp 800w, assets/img/hero-1200.webp 1200w" sizes="(min-width: 1024px) 480px, 100vw" width="800" height="1000" alt="Historischer, reich verzierter Flügel in einem Ausstellungsraum" fetchpriority="high" decoding="async">
+          </div>
+          <div class="chip chip--a">
+            <span class="chip__icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+            <span><strong>Doppelt versichert</strong><small>Instrument &amp; Gebäude</small></span>
+          </div>
+          <div class="chip chip--b">
+            <strong class="chip__num" data-count="15">15+</strong>
+            <span><strong>Jahre</strong><small>Erfahrung</small></span>
+          </div>
+        </div>
+      </div>
+      <p class="keys__hint" aria-hidden="true">♪ Die Tasten sind spielbar</p>
+      <div class="keys" aria-hidden="true"></div>
+    </section>
+
+    <!-- LEISTUNGEN -->
+    <section class="section section--ivory" id="leistungen">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Leistungen</p>
+          <h2>Was wir für Sie bewegen</h2>
+          <p class="section__lead">Vom Klavier bis zum schweren Tresor: Für jede Aufgabe haben wir das passende Team und die richtige Technik.</p>
+        </div>
+
+        <div class="services">
+          <article class="service reveal">
+            <span class="service__icon"><svg class="icon"><use href="#i-upright"/></svg></span>
+            <h3>Klaviertransport</h3>
+            <p>Sicher verpackt, fachgerecht getragen und am Ziel wieder aufgestellt – auch über mehrere Etagen.</p>
+            <a class="service__link" href="#anfrage" data-service="klavier">Anfragen<svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="service reveal">
+            <span class="service__icon"><svg class="icon"><use href="#i-grand"/></svg></span>
+            <h3>Flügeltransport</h3>
+            <p>Mit fachgerechter De- und Montage: Ihr Flügel reist gut geschützt und in erfahrenen Händen.</p>
+            <a class="service__link" href="#anfrage" data-service="fluegel">Anfragen<svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="service reveal">
+            <span class="service__icon"><svg class="icon"><use href="#i-vault"/></svg></span>
+            <h3>Tresortransport</h3>
+            <p>Tresore, Daten- und Serverschränke präzise bewegt – bei Bedarf mit Kran.</p>
+            <a class="service__link" href="#anfrage" data-service="tresor">Anfragen<svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="service reveal">
+            <span class="service__icon"><svg class="icon"><use href="#i-forklift"/></svg></span>
+            <h3>Spezialtransporte</h3>
+            <p>Automaten, medizinische Geräte, Drucker, Plotter oder Heizkessel: Schweres ist bei uns gut aufgehoben.</p>
+            <a class="service__link" href="#anfrage" data-service="spezial">Anfragen<svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="service reveal">
+            <span class="service__icon"><svg class="icon"><use href="#i-brush"/></svg></span>
+            <h3>Klavierlackierung</h3>
+            <p>Schellack oder Polyester – wir bringen Ihr Instrument wieder zum Glänzen.</p>
+            <a class="service__link" href="#anfrage" data-service="lackierung">Anfragen<svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="service reveal">
+            <span class="service__icon"><svg class="icon"><use href="#i-recycle"/></svg></span>
+            <h3>Entsorgung</h3>
+            <p>Altes Klavier, Flügel oder Tresor? Wir holen ab und entsorgen fachgerecht.</p>
+            <a class="service__link" href="#anfrage" data-service="entsorgung">Anfragen<svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+        </div>
+
+        <ul class="tags reveal" aria-label="Weitere Leistungen">
+          <li>Krantransporte</li>
+          <li>Umstellung im Haus</li>
+          <li>De- und Montage</li>
+          <li>Schwerlasttransporte</li>
+          <li>Konzertreihen</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- VORTEILE -->
+    <section class="section section--dark" id="vorteile">
+      <div class="container why">
+        <div class="why__media reveal">
+          <img src="assets/img/team.webp" width="720" height="900" alt="Mitarbeiter im roten Premium-Shirt arbeitet an einem geöffneten Klavier" loading="lazy" decoding="async">
+          <p class="why__badge">Professionell · Sicher · Zuverlässig</p>
+        </div>
+        <div class="why__body">
+          <div class="section__head reveal">
+            <p class="eyebrow eyebrow--light">Warum Premium</p>
+            <h2>Vom Profi gebaut.<br>Vom Profi bewegt.</h2>
+            <p class="section__lead">Ihr Klavier wurde vom Profi gebaut – und sollte auch vom Profi transportiert werden. Darauf können Sie sich bei uns verlassen:</p>
+          </div>
+          <ul class="features">
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+              <div><h3>Doppelt versichert</h3><p>Eine Versicherung schützt Ihr Instrument, eine zweite Wände, Böden und Gebäude.</p></div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon"><use href="#i-award"/></svg></span>
+              <div><h3>Über 15 Jahre Erfahrung</h3><p>Kein Transport ist wie der andere. Unsere Routine zahlt sich bei jedem Auftrag aus.</p></div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon"><use href="#i-users"/></svg></span>
+              <div><h3>Geschultes Team</h3><p>Speziell für Klaviertransporte ausgebildet und regelmäßig geschult.</p></div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon"><use href="#i-coins"/></svg></span>
+              <div><h3>Faire Preise</h3><p>Transparente Angebote und eine zügige Abwicklung.</p></div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon"><use href="#i-calendar"/></svg></span>
+              <div><h3>Flexibel</h3><p>Wir richten uns nach Ihrem Termin und sind auch kurzfristig für Sie da.</p></div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon"><use href="#i-truck"/></svg></span>
+              <div><h3>Bundesweit</h3><p>Zuhause in NRW, Rheinland-Pfalz und Hessen – unterwegs in ganz Deutschland.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABLAUF -->
+    <section class="section section--ivory" id="ablauf">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Ablauf</p>
+          <h2>In vier Schritten ans Ziel</h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal"><h3>Anfrage senden</h3><p>Formular ausfüllen oder kurz anrufen – das dauert nur wenige Sekunden.</p></li>
+          <li class="step reveal"><h3>Angebot erhalten</h3><p>Sie bekommen von uns ein individuelles Angebot für Ihren Transport.</p></li>
+          <li class="step reveal"><h3>Termin abstimmen</h3><p>Gemeinsam finden wir einen Termin, der zu Ihnen passt.</p></li>
+          <li class="step reveal"><h3>Sicher transportiert</h3><p>Unser Team verpackt, transportiert und stellt alles am Zielort wieder auf.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- EINBLICKE -->
+    <section class="section section--paper" id="einblicke">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Einblicke</p>
+          <h2>So sieht unser Alltag aus</h2>
+          <p class="section__lead">Echte Einsätze, echte Menschen – ein paar Eindrücke aus unserer Arbeit.</p>
+        </div>
+        <div class="gallery reveal" tabindex="0" role="region" aria-label="Bilder aus unserer Arbeit">
+          <figure><img src="assets/img/work-fluegel-verpackt.webp" width="800" height="600" alt="Mitarbeiter hebt einen in Folie verpackten Flügel mit einem Hubgerät an" loading="lazy" decoding="async"><figcaption>Flügel, sicher verpackt</figcaption></figure>
+          <figure><img src="assets/img/work-klavier-rollbrett.webp" width="800" height="600" alt="Verpacktes Klavier auf einem Rollbrett vor dem Transporter" loading="lazy" decoding="async"><figcaption>Klavier auf dem Weg zum Kunden</figcaption></figure>
+          <figure><img src="assets/img/work-fluegel-team.webp" width="800" height="600" alt="Zwei Mitarbeiter bewegen einen verpackten Flügel auf einem Transportwagen" loading="lazy" decoding="async"><figcaption>Flügeltransport im Team</figcaption></figure>
+          <figure><img src="assets/img/work-tresor-kran.webp" width="800" height="600" alt="Lkw mit Ladekran hebt einen Tresor an" loading="lazy" decoding="async"><figcaption>Tresortransport mit Ladekran</figcaption></figure>
+          <figure><img src="assets/img/work-treppenhaus.webp" width="800" height="600" alt="Team richtet Hebetechnik in einem Treppenhaus ein" loading="lazy" decoding="async"><figcaption>Hebetechnik im Treppenhaus</figcaption></figure>
+          <figure><img src="assets/img/work-lackierung.webp" width="800" height="600" alt="Klavier wird in der Lackierkabine weiß lackiert" loading="lazy" decoding="async"><figcaption>Klavierlackierung</figcaption></figure>
+        </div>
+        <div class="gallery__bar" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--ivory" id="faq">
+      <div class="container faq">
+        <div class="section__head reveal">
+          <p class="eyebrow">Häufige Fragen</p>
+          <h2>Gut zu wissen</h2>
+          <p class="section__lead">Ihre Frage ist nicht dabei? Rufen Sie uns einfach an: <a class="link" href="tel:+4920145863256">0201&nbsp;45&nbsp;86&nbsp;32&nbsp;56</a></p>
+        </div>
+        <div class="faq__list">
+          <details class="faq__item reveal">
+            <summary>Ist mein Instrument beim Transport versichert?<span class="faq__icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>Ja. Jeder Klavier- und Flügeltransport ist bei uns doppelt abgesichert: Eine Versicherung schützt Ihr Instrument, eine zweite deckt mögliche Schäden an Wänden, Böden und am Gebäude ab.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Welche Angaben brauchen Sie für ein Angebot?<span class="faq__icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>Am wichtigsten sind die Art des Instruments oder Gegenstands, ungefähres Gewicht bzw. Maße, Abhol- und Lieferadresse sowie die jeweiligen Etagen. Je genauer Ihre Angaben, desto schneller erhalten Sie Ihr Angebot.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>In welchen Regionen sind Sie unterwegs?<span class="faq__icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>Wir sind vor allem in Nordrhein-Westfalen, Rheinland-Pfalz und Hessen im Einsatz – auf Anfrage transportieren wir bundesweit.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Transportieren Sie auch Tresore und andere schwere Gegenstände?<span class="faq__icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>Ja. Neben Klavieren und Flügeln bewegen wir Tresore, Daten- und Serverschränke, Automaten, Drucker, Plotter und Kopierer, medizinische Geräte sowie Heizungen und Boiler – wenn nötig mit Kran.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Können Sie mein altes Klavier auch entsorgen?<span class="faq__icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <p>Ja. Wir übernehmen die fachgerechte Entsorgung von Klavieren, Flügeln und Tresoren und holen sie direkt bei Ihnen ab.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Laufband -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track"><span>Klaviertransport</span><span>Flügeltransport</span><span>Tresortransport</span><span>Spezialtransporte</span><span>Professionell</span><span>Sicher</span><span>Zuverlässig</span><span>Klaviertransport</span><span>Flügeltransport</span><span>Tresortransport</span><span>Spezialtransporte</span><span>Professionell</span><span>Sicher</span><span>Zuverlässig</span></div>
+    </div>
+
+    <!-- ANFRAGE -->
+    <section class="section section--dark" id="anfrage">
+      <div class="container contact">
+        <div class="section__head contact__head reveal">
+          <p class="eyebrow eyebrow--light">Anfrage</p>
+          <h2>In wenigen Sekunden zum Angebot</h2>
+          <p class="section__lead">Sagen Sie uns kurz, worum es geht – wir melden uns mit einem unverbindlichen Angebot bei Ihnen.</p>
+        </div>
+
+        <form class="form reveal" id="anfrage-form" action="#" method="post" novalidate>
+          <fieldset class="form__group">
+            <legend>Worum geht es?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="leistung" value="klavier" checked><span>Klavier</span></label>
+              <label class="choice"><input type="radio" name="leistung" value="fluegel"><span>Flügel</span></label>
+              <label class="choice"><input type="radio" name="leistung" value="tresor"><span>Tresor</span></label>
+              <label class="choice"><input type="radio" name="leistung" value="spezial"><span>Spezial</span></label>
+              <label class="choice"><input type="radio" name="leistung" value="lackierung"><span>Lackierung</span></label>
+              <label class="choice"><input type="radio" name="leistung" value="entsorgung"><span>Entsorgung</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="f-name">Name <abbr title="Pflichtfeld">*</abbr></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="f-tel">Telefon <abbr title="Pflichtfeld">*</abbr></label>
+              <input id="f-tel" name="telefon" type="tel" inputmode="tel" autocomplete="tel" required>
+            </div>
+            <div class="field">
+              <label for="f-mail">E-Mail <abbr title="Pflichtfeld">*</abbr></label>
+              <input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="form__addr">
+            <div class="field">
+              <label for="f-von">Abholadresse</label>
+              <input id="f-von" name="abholadresse" type="text" autocomplete="off" placeholder="Straße, PLZ, Ort">
+            </div>
+            <div class="field">
+              <label for="f-von-etage">Etage</label>
+              <select id="f-von-etage" name="abhol_etage">
+                <option>EG</option><option>1.</option><option>2.</option><option>3.</option><option>4.</option><option>5.+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form__addr">
+            <div class="field">
+              <label for="f-nach">Lieferadresse</label>
+              <input id="f-nach" name="lieferadresse" type="text" autocomplete="off" placeholder="Straße, PLZ, Ort">
+            </div>
+            <div class="field">
+              <label for="f-nach-etage">Etage</label>
+              <select id="f-nach-etage" name="liefer_etage">
+                <option>EG</option><option>1.</option><option>2.</option><option>3.</option><option>4.</option><option>5.+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-msg">Nachricht <span class="field__opt">optional</span></label>
+            <textarea id="f-msg" name="nachricht" rows="3" placeholder="z. B. Gewicht, Maße, Besonderheiten vor Ort"></textarea>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="datenschutz" required>
+            <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Details in der <a class="link" href="https://premium-klaviertransport.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>.</span>
+          </label>
+
+          <p class="form__error" role="alert" hidden>Bitte füllen Sie alle Pflichtfelder aus.</p>
+
+          <button class="btn btn--primary btn--block btn--lg btn--shine" type="submit">Angebot anfordern<svg class="icon"><use href="#i-arrow"/></svg></button>
+          <p class="form__note">Unverbindlich. Ihre Daten bleiben bei uns.</p>
+
+          <div class="form__success" role="status" hidden>
+            <span class="form__success-icon"><svg class="icon"><use href="#i-check"/></svg></span>
+            <h3>Vielen Dank für Ihre Anfrage!</h3>
+            <p>Wir melden uns so schnell wie möglich bei Ihnen.</p>
+            <p class="form__demo">Hinweis zur Vorschau: Das Formular ist noch nicht angeschlossen – es wurden keine Daten gesendet.</p>
+          </div>
+        </form>
+
+        <ul class="contact__list reveal">
+          <li>
+            <span class="feature__icon"><svg class="icon"><use href="#i-phone"/></svg></span>
+            <div>
+              <small>Telefon</small>
+              <a href="tel:+4920145863256">0201 45 86 32 56</a>
+              <a href="tel:+4920145863255">0201 45 86 32 55</a>
+              <a href="tel:+4915154847636">0151 54 84 76 36</a>
+            </div>
+          </li>
+          <li>
+            <span class="feature__icon"><svg class="icon"><use href="#i-mail"/></svg></span>
+            <div>
+              <small>E-Mail</small>
+              <a href="mailto:info@premium-klaviertransport.de">info@premium-klaviertransport.de</a>
+            </div>
+          </li>
+          <li>
+            <span class="feature__icon"><svg class="icon"><use href="#i-clock"/></svg></span>
+            <div>
+              <small>Bürozeiten</small>
+              <span>Mo–Fr 9:00–18:00 Uhr</span>
+              <span>Sa 10:00–13:00 Uhr</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="#top" aria-label="Premium Speziallogistik – nach oben">
+          <img src="assets/img/logo.webp" width="756" height="207" alt="Premium Speziallogistik">
+        </a>
+        <p>Premium Klavier- und Spezialtransport steht für Qualität, Service und Sicherheit.</p>
+      </div>
+      <nav aria-label="Leistungen">
+        <h3>Leistungen</h3>
+        <ul>
+          <li><a href="#leistungen">Klaviertransport</a></li>
+          <li><a href="#leistungen">Flügeltransport</a></li>
+          <li><a href="#leistungen">Tresortransport</a></li>
+          <li><a href="#leistungen">Spezialtransporte</a></li>
+          <li><a href="#leistungen">Klavierlackierung</a></li>
+          <li><a href="#leistungen">Entsorgung</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href="tel:+4920145863256">0201 45 86 32 56</a></li>
+          <li><a href="mailto:info@premium-klaviertransport.de">info@premium-klaviertransport.de</a></li>
+          <li>Mo–Fr 9–18 Uhr · Sa 10–13 Uhr</li>
+        </ul>
+      </div>
+      <nav aria-label="Rechtliches">
+        <h3>Rechtliches</h3>
+        <ul>
+          <li><a href="https://premium-klaviertransport.de/impressum/">Impressum</a></li>
+          <li><a href="https://premium-klaviertransport.de/datenschutz/">Datenschutz</a></li>
+          <li><a href="https://premium-klaviertransport.de/agbs/">AGB</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Premium Klavier- und Spezialtransport</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Aktionsleiste -->
+  <div class="cta-bar" id="cta-bar">
+    <a class="btn btn--light" href="tel:+4920145863256"><svg class="icon"><use href="#i-phone"/></svg>Anrufen</a>
+    <a class="btn btn--primary" href="#anfrage">Angebot anfordern</a>
+  </div>
+
+  <script src="assets/js/main.js?v=4" defer></script>
+</body>
+</html>
