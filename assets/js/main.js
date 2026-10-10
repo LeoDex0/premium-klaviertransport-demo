@@ -351,12 +351,19 @@
       var shown = 0;
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.style.setProperty('--d', Math.min(shown++, 5) * 70 + 'ms');
-        entry.target.classList.add('is-in');
+        var el = entry.target._reveal;
+        el.style.setProperty('--d', Math.min(shown++, 5) * 70 + 'ms');
+        el.classList.add('is-in');
         io.unobserve(entry.target);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    reveals.forEach(function (el) { io.observe(el); });
+    reveals.forEach(function (el) {
+      // Ein per clip-path komplett beschnittenes Element gilt in Chromium nie als sichtbar:
+      // dort stattdessen den Elternknoten beobachten
+      var watched = getComputedStyle(el).clipPath === 'none' ? el : el.parentElement;
+      watched._reveal = el;
+      io.observe(watched);
+    });
   } else {
     doc.classList.add('reveal-all');
   }
