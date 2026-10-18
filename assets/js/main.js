@@ -311,6 +311,141 @@
     });
   }
 
+  /* ---------- Fotos zur Anfrage (Vorschau: kein Upload) ---------- */
+  var upload = form && form.querySelector('.upload');
+  if (upload) {
+    var fileInput = upload.querySelector('.upload__input');
+    var thumbs = form.querySelector('.thumbs');
+    var uploadCount = upload.querySelector('.upload__count');
+    var maxFiles = 8;
+    var picked = [];
+
+    var syncFiles = function () {
+      // Auswahl zurück ins Feld schreiben, damit sie später mitgesendet werden kann
+      try {
+        var dt = new DataTransfer();
+        picked.forEach(function (p) { dt.items.add(p.file); });
+        fileInput.files = dt.files;
+      } catch (err) {}
+      var n = picked.length;
+      uploadCount.textContent = n >= maxFiles ? maxFiles + ' Fotos – mehr passen nicht hinein'
+        : n ? n + (n === 1 ? ' Foto' : ' Fotos') + ' ausgewählt' : '';
+      upload.classList.toggle('is-full', n >= maxFiles);
+    };
+
+    var addFiles = function (list) {
+      Array.prototype.slice.call(list).forEach(function (file) {
+        var isImage = /^image\//.test(file.type) || /\.(heic|heif)$/i.test(file.name);
+        if (!isImage || picked.length >= maxFiles) return;
+        var url = URL.createObjectURL(file);
+        var item = document.createElement('li');
+        item.className = 'thumb';
+        var img = new Image();
+        img.alt = '';
+        img.onerror = function () { item.classList.add('thumb--noprev'); };
+        img.src = url;
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'thumb__del';
+        del.setAttribute('aria-label', 'Foto entfernen: ' + file.name);
+        del.innerHTML = '<svg class="icon"><use href="#i-x"/></svg>';
+        var entry = { file: file };
+        del.addEventListener('click', function () {
+          URL.revokeObjectURL(url);
+          picked.splice(picked.indexOf(entry), 1);
+          item.remove();
+          syncFiles();
+          fileInput.focus();
+        });
+        item.appendChild(img);
+        item.appendChild(del);
+        thumbs.appendChild(item);
+        picked.push(entry);
+      });
+      syncFiles();
+    };
+
+    fileInput.addEventListener('change', function () { addFiles(fileInput.files); });
+    upload.addEventListener('click', function (e) {
+      if (picked.length >= maxFiles) e.preventDefault();
+    });
+    ['dragenter', 'dragover'].forEach(function (type) {
+      upload.addEventListener(type, function (e) {
+        e.preventDefault();
+        upload.classList.add('is-drag');
+      });
+    });
+    upload.addEventListener('dragleave', function (e) {
+      if (!upload.contains(e.relatedTarget)) upload.classList.remove('is-drag');
+    });
+    upload.addEventListener('drop', function (e) {
+      e.preventDefault();
+      upload.classList.remove('is-drag');
+      if (e.dataTransfer) addFiles(e.dataTransfer.files);
+    });
+  }
+
+  /* ---------- Einsatzgebiet: Liste und Karte, Verkehr auf den Routen ---------- */
+  var map = document.querySelector('.map');
+  if (map) {
+    var setHot = function (region, on) {
+      document.querySelectorAll('[data-region="' + region + '"]').forEach(function (el) {
+        el.classList.toggle('is-hot', on);
+      });
+    };
+    document.querySelectorAll('[data-region]').forEach(function (el) {
+      el.addEventListener('pointerenter', function () { setHot(el.dataset.region, true); });
+      el.addEventListener('pointerleave', function () { setHot(el.dataset.region, false); });
+    });
+
+    var routes = map.querySelectorAll('.map__route');
+    var moverLayer = map.querySelector('.map__movers');
+    if (!reduced && routes.length && moverLayer && 'IntersectionObserver' in window) {
+      var NS = 'http://www.w3.org/2000/svg';
+      var movers = Array.prototype.map.call(routes, function (path, i) {
+        var g = document.createElementNS(NS, 'g');
+        g.setAttribute('class', 'map__mover');
+        g.style.opacity = '0';
+        [['map__mover-glow', 6.5], ['', 2.6]].forEach(function (c) {
+          var circle = document.createElementNS(NS, 'circle');
+          if (c[0]) circle.setAttribute('class', c[0]);
+          circle.setAttribute('r', c[1]);
+          g.appendChild(circle);
+        });
+        moverLayer.appendChild(g);
+        var len = path.getTotalLength();
+        return { path: path, el: g, len: len, dur: 2200 + len * 7, offset: i * 700 + (i % 3) * 230 };
+      });
+      var easeInOut = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+      var mapStart = 0;
+      var mapFrame = 0;
+
+      var drawMovers = function (now) {
+        movers.forEach(function (m) {
+          var t = now - mapStart - m.offset;
+          if (t < 0) return;
+          var cycle = m.dur + 1400;
+          var p = Math.min((t % cycle) / m.dur, 1);
+          var pt = m.path.getPointAtLength(easeInOut(p) * m.len);
+          m.el.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ')');
+          m.el.style.opacity = p < .06 ? p / .06 : p > .92 ? Math.max(0, (1 - p) / .08) : 1;
+        });
+        mapFrame = requestAnimationFrame(drawMovers);
+      };
+
+      // nur laufen lassen, solange die Karte sichtbar ist; erster Start nach dem Aufbau der Routen
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          if (!mapStart) mapStart = performance.now() + 2700;
+          if (!mapFrame) mapFrame = requestAnimationFrame(drawMovers);
+        } else if (mapFrame) {
+          cancelAnimationFrame(mapFrame);
+          mapFrame = 0;
+        }
+      }, { threshold: 0.15 }).observe(map);
+    }
+  }
+
   /* ---------- Mobile Aktionsleiste ---------- */
   var bar = document.getElementById('cta-bar');
   var heroCta = document.getElementById('hero-cta');
